@@ -1,0 +1,53 @@
+sdk:
+    shopping:
+        api_class: ShoppingAPI\ShoppingAPI
+        listeners:
+            api_after_create:
+                class: ShoppingAPI\Listener\ApiAfterCreateListener
+                method: onApiCreate
+
+        global_parameters:
+            ebay_url:
+                representation: null
+                value: http://open.api.ebay.com/shopping
+                type: [required, standalone]
+                valid: null
+            app_id:
+                representation: appid
+                value: Mariokrl-testing-PRD-ee6e68035-e73c8a53
+                type: [required]
+                valid: null
+            service_version:
+                representation: version
+                value: 515
+                type: [required]
+                valid: [515]
+
+        special_parameters:
+            callname:
+                representation: callname
+                value: null
+                type: [optional, injectable]
+                valid: [FindHalfProducts, FindProducts, FindReviewsAndGuides, GetCategoryInfo, GeteBayTime, GetItemStatus, GetMultipleItems, GetShippingCosts, GetSingleItem, GetUserProfile]
+            response_encoding:
+                representation: responseencoding
+                value: xml
+                type: [optional, injectable]
+                valid: [xml, json]
+            keywords:
+                representation: QueryKeywords
+                value: null
+                type: [optional]
+                valid: null
+                encode: true
+            max_entries:
+                representation: MaxEntries
+                value: null
+                type: [optional]
+                valid: null
+
+        dynamics:
+            product_type:
+                name: ProductID
+                object: ShoppingAPI\Dynamic\ProductTypeDynamic
+                value: null
